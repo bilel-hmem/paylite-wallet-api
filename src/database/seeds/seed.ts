@@ -1,4 +1,3 @@
-import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { DataSource } from 'typeorm';
 import { AppModule } from '../../app.module';
@@ -16,8 +15,8 @@ const DEMO_USERS = [
 ];
 
 async function seed(): Promise<void> {
-  const logger = new Logger('Seed');
   // Reuses the real services, so seeded data goes through the same rules and ledger.
+  // Nest's own logs are muted below, so progress is printed with console.log.
   const app = await NestFactory.createApplicationContext(AppModule, { logger: ['error', 'warn'] });
   try {
     const auth = app.get(AuthService);
@@ -26,7 +25,7 @@ async function seed(): Promise<void> {
 
     for (const demo of DEMO_USERS) {
       if (await users.existsBy({ email: demo.email })) {
-        logger.log(`${demo.email} already exists, skipped`);
+        console.log(`${demo.email} already exists, skipped`);
         continue;
       }
       const profile = await auth.register({
@@ -40,7 +39,7 @@ async function seed(): Promise<void> {
       if (demo.deposit > 0) {
         await wallets.deposit(profile.id, { amount: demo.deposit, description: 'Seed balance' });
       }
-      logger.log(`Created ${demo.role} ${demo.email}`);
+      console.log(`Created ${demo.role} ${demo.email}`);
     }
   } finally {
     await app.close();
