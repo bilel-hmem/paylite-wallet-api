@@ -20,4 +20,6 @@ export const envValidationSchema = Joi.object({
 
   DAILY_TRANSFER_LIMIT: Joi.number().integer().positive().default(2_000_000),
   THROTTLE_LIMIT: Joi.number().integer().positive().default(100),
+  /** Set to true only when running behind a reverse proxy (Nginx). */
+  TRUST_PROXY: Joi.boolean().default(false),
 });
