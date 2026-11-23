@@ -1,6 +1,6 @@
 # PayLite — Wallet & P2P Transfer API
 
-[![CI](https://github.com/bilelhmem/paylite-wallet-api/actions/workflows/ci.yml/badge.svg)](https://github.com/bilelhmem/paylite-wallet-api/actions/workflows/ci.yml)
+[![CI](https://github.com/bilel-hmem/paylite-wallet-api/actions/workflows/ci.yml/badge.svg)](https://github.com/bilel-hmem/paylite-wallet-api/actions/workflows/ci.yml)
 ![NestJS](https://img.shields.io/badge/NestJS-11-E0234E?logo=nestjs&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript&logoColor=white)
 ![MySQL](https://img.shields.io/badge/MySQL-8-4479A1?logo=mysql&logoColor=white)
@@ -8,7 +8,7 @@
 
 A digital wallet backend where users top up their balance and send money to each other — built so that **balances can never go wrong**, even under concurrent requests and network retries.
 
-> **Live API docs:** _coming soon (deployed with [paylite-infra](https://github.com/bilelhmem/paylite-infra))_
+> **Live API docs:** _coming soon (deployed with [paylite-infra](https://github.com/bilel-hmem/paylite-infra))_
 
 ## Why this project
 
@@ -147,7 +147,7 @@ erDiagram
 **Requirements:** Node.js 22+, Docker (for MySQL).
 
 ```bash
-git clone https://github.com/bilelhmem/paylite-wallet-api.git
+git clone https://github.com/bilel-hmem/paylite-wallet-api.git
 cd paylite-wallet-api
 npm ci
 cp .env.example .env

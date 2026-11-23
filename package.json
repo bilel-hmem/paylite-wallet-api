@@ -2,7 +2,7 @@
   "name": "paylite-wallet-api",
   "version": "1.0.0",
   "description": "Concurrency-safe digital wallet & P2P transfer API built with NestJS, TypeORM and MySQL",
-  "author": "bilelhmem",
+  "author": "Bilel Hmem",
   "license": "MIT",
   "private": true,
   "engines": {
