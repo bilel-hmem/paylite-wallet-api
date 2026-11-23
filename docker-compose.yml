@@ -1,0 +1,40 @@
+# Local development stack.
+#   docker compose up -d mysql      -> database only (run the API with `npm run start:dev`)
+#   docker compose up -d --build    -> database + API (migrations run on start)
+services:
+  mysql:
+    image: mysql:8.4
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: paylite
+      MYSQL_USER: paylite
+      MYSQL_PASSWORD: paylite
+    ports:
+      - '3306:3306'
+    volumes:
+      - mysql-data:/var/lib/mysql
+      # Creates the paylite_test database used by `npm run test:e2e`
+      - ./docker/mysql-init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost', '-uroot', '-proot']
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  api:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DB_HOST: mysql
+      TZ: Africa/Tunis
+    ports:
+      - '3000:3000'
+    depends_on:
+      mysql:
+        condition: service_healthy
+    command: sh -c "npm run migration:run:prod && node dist/main.js"
+
+volumes:
+  mysql-data:
