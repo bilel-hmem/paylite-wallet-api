@@ -1,0 +1,17 @@
+# dependencies & build output
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+
+# environment (keep .env.example and the test-only .env.test)
+.env
+.env.*.local
+
+# logs & OS/editor files
+*.log
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
